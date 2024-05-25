@@ -26,21 +26,31 @@ public class MoveDjengaScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mousePosition = Input.mousePosition - GetMousePosition();
-        endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-        _rigidBody.useGravity = false;
+        if (Input.GetMouseButtonDown(0))
+        {
+            mousePosition = Input.mousePosition - GetMousePosition();
+            endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            _rigidBody.useGravity = false;
+        }
+        
     }
 
     private void OnMouseDrag()
     {
-        endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-        //transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-        transform.position = Vector3.SmoothDamp(transform.position, endPoint, ref velocity, smoothTime, speed);
+        if (Input.GetMouseButton(0)) 
+        { 
+            endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            transform.position = Vector3.SmoothDamp(transform.position, endPoint, ref velocity, smoothTime, speed);
+        }
+        
     }
 
     private void OnMouseUp()
     {
-        _rigidBody.useGravity = true;
-        _rigidBody.AddForce(velocity, ForceMode.Impulse);
+        if (Input.GetMouseButtonUp(0))
+        {
+            _rigidBody.useGravity = true;
+            _rigidBody.AddForce(velocity, ForceMode.Impulse);
+        }
     }
 }
