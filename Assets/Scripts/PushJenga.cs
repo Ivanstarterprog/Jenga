@@ -10,7 +10,6 @@ public class PushJenga : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetMouseButtonDown(1))
         {
             _ray = Camera.main.ScreenPointToRay(Input.mousePosition);

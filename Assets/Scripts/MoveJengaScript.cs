@@ -23,6 +23,17 @@ public class MoveDjengaScript : MonoBehaviour
         return Camera.main.WorldToScreenPoint(transform.position);
     }
 
+    private void RotateJenga()
+    {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(0, 1, 0);
+        }
+        if(Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(0, -1, 0);
+        }
+    }
 
     private void OnMouseDown()
     {
@@ -41,8 +52,8 @@ public class MoveDjengaScript : MonoBehaviour
         { 
             endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
             transform.position = Vector3.SmoothDamp(transform.position, endPoint, ref velocity, smoothTime, speed);
-        }
-        
+            RotateJenga();
+        }       
     }
 
     private void OnMouseUp()

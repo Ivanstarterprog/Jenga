@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public float wheelSpeed = 100;
+    public float wheelSpeed = 10;
     public float cameraMoveSpeed = 2;
     public GameObject pointToMoveAround;
     private Vector3 _pointToMoveAroundPosition;
@@ -20,7 +20,11 @@ public class CameraMove : MonoBehaviour
     {
         transform.LookAt(pointToMoveAround.transform);
         
-        ZoomAtJenga();
+        if (!Input.GetMouseButton(0))
+        {
+            ZoomAtJenga();
+        }
+        
         LookAroundJenga();
         
     }
@@ -28,10 +32,16 @@ public class CameraMove : MonoBehaviour
     private void ZoomAtJenga()
     {
         float scrollWheelAxis = Input.GetAxis("Mouse ScrollWheel");
-
-        if (scrollWheelAxis != 0.0f && (_mainCamera.fieldOfView < 60 || _mainCamera.fieldOfView > 35))
+        Debug.Log(scrollWheelAxis);
+        Debug.Log(_mainCamera.fieldOfView);
+        if (scrollWheelAxis > 0.00f && _mainCamera.fieldOfView <= 60)
         {
-            _mainCamera.fieldOfView += scrollWheelAxis * -10;
+            Debug.Log("Da kakogo huia");
+            _mainCamera.fieldOfView += wheelSpeed;
+        }
+        if (scrollWheelAxis < 0.00f && _mainCamera.fieldOfView >= 35)
+        {
+            _mainCamera.fieldOfView -= wheelSpeed;
         }
     }
 
@@ -45,11 +55,11 @@ public class CameraMove : MonoBehaviour
         {
             gameObject.transform.RotateAround(_pointToMoveAroundPosition, Vector3.down, cameraMoveSpeed);
         }
-        if (Input.GetKey(KeyCode.W) && _mainCamera.transform.rotation.x <= 20)
+        if (Input.GetKey(KeyCode.W) && _mainCamera.transform.position.y <= 6)
         {
             gameObject.transform.RotateAround(_pointToMoveAroundPosition, transform.right, cameraMoveSpeed);
         }
-        if (Input.GetKey(KeyCode.S) && _mainCamera.transform.rotation.x >= 0)
+        if (Input.GetKey(KeyCode.S) && _mainCamera.transform.position.y >= 0)
         {
             gameObject.transform.RotateAround(_pointToMoveAroundPosition, -transform.right, cameraMoveSpeed);
         }
