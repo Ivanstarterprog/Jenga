@@ -33,11 +33,11 @@ public class CameraMove : MonoBehaviour
     {
         float scrollWheelAxis = Input.GetAxis("Mouse ScrollWheel");
 
-        if (scrollWheelAxis > 0.00f && _mainCamera.fieldOfView >= 35)
+        if (scrollWheelAxis > 0.00f && _mainCamera.fieldOfView >= 25)
         {
             _mainCamera.fieldOfView -= wheelSpeed;
         }
-        if (scrollWheelAxis < 0.00f && _mainCamera.fieldOfView <= 65)
+        if (scrollWheelAxis < 0.00f && _mainCamera.fieldOfView <= 60)
         {
             _mainCamera.fieldOfView += wheelSpeed;
         }
