@@ -8,21 +8,48 @@ public class UIGameScript : MonoBehaviour
 {
     [SerializeField] GameObject menu;
     [SerializeField] GameObject settings;
+    [SerializeField] GameObject roundEnd;
     [SerializeField] GameObject playerUI;
+
     [SerializeField] GameObject currentPlayerTextObject;
     private TextMeshProUGUI _currentPlayerText;
+    [SerializeField] GameObject firstPlayerScoreTextObject;
+    private TextMeshProUGUI _firstPlayerScoreText;
+    [SerializeField] GameObject secondPlayerScoreTextObject;
+    private TextMeshProUGUI _secondPlayerScoreText;
 
     void Start()
     {
         ContinueGame();
+        roundEnd.SetActive(false);
         _currentPlayerText = currentPlayerTextObject.GetComponent<TextMeshProUGUI>();
+        _firstPlayerScoreText = firstPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
+        _secondPlayerScoreText = secondPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.onRoundEnding += EndRoundUI;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onRoundEnding -= EndRoundUI;
+    }
+
+    private void EndRoundUI(string winner)
+    {
+        menu.SetActive(false);
+        settings.SetActive(false);
+        playerUI.SetActive(false);
+        roundEnd.SetActive(true);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameManager.Instance.isPaused)
+            if (GameManager.instance.isPaused)
             {
                 ContinueGame();
             }
@@ -33,8 +60,8 @@ public class UIGameScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager.Instance.ChangePlayer();
-            if (GameManager.Instance.currentPlayer == "First")
+            GameManager.instance.ChangePlayer();
+            if (GameManager.instance.currentPlayer == "First")
             {
                 _currentPlayerText.text = "Ход первого игрока";
             }
@@ -67,18 +94,30 @@ public class UIGameScript : MonoBehaviour
 
     public void ContinueGame()
     {
-        GameManager.Instance.PauseUnpressed();
+        GameManager.instance.PauseUnpressed();
+       // ReloadScoreUI();
         ClosePauseMenu();
     }
 
     public void PauseGame()
     {
         OpenPauseMenu();
-        GameManager.Instance.PausePressed();
+        GameManager.instance.PausePressed();
     }
 
     public void GoToMainMenu()
     {
+        GameManager.instance.PlayersWinsReset();
         SceneManager.LoadScene("Menu");
+    }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReloadScoreUI()
+    {
+        _firstPlayerScoreText.text = $"Первый игрок: {GameManager.instance.firstPlayerWins}";
+        _secondPlayerScoreText.text = $"Второй игрок: {GameManager.instance.secondPlayerWins}";
     }
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class MoveDjengaScript : MonoBehaviour
 {
-    Vector3 mousePosition;
-    Vector3 velocity = Vector3.zero;
-    Vector3 endPoint;
+    
+    private Vector3 mousePosition;
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 endPoint;
     public Vector3 targetPosition;
     public float smoothTime = 1f;
     public float speed = 4;
@@ -16,6 +17,16 @@ public class MoveDjengaScript : MonoBehaviour
     private void Start()
     {
         _rigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameManager.instance.WoodColidedWithEndingZone();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GameManager.instance.WoodLeftEndingZone();
     }
 
     private Vector3 GetMousePosition()

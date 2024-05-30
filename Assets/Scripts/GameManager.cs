@@ -1,24 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager instance { get; private set; }
 
     [Range(1f, 2f)] public float mouseWheelSpeed = 1.5f;
     [Range(1f, 3f)] public float cameraMoveSpeed = 2f;
 
+    public static Action<string> onRoundEnding;
+
     public string currentPlayer;
     public bool isPaused;
+    public int firstPlayerWins;
+    public int secondPlayerWins;
+    public int woodsTouchingEndingZone;
 
     private void Start()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
 
             InitializeManager();
@@ -31,7 +34,51 @@ public class GameManager : MonoBehaviour
     private void InitializeManager()
     {
         currentPlayer = "First";
+        PlayersWinsReset();
         PauseUnpressed();
+    }
+
+    public void PlayersWinsReset()
+    {
+        firstPlayerWins = 0;
+        secondPlayerWins = 0;
+    }
+
+    public void RoundEnd()
+    {
+        if (currentPlayer == "First")
+        {
+            PlayerTwoWin();
+        }
+        else
+        {
+            PlayerOneWin();
+        }
+        onRoundEnding?.Invoke(currentPlayer);
+    }
+
+    public void PlayerOneWin()
+    {
+        ++firstPlayerWins;
+    }
+
+    public void PlayerTwoWin()
+    {
+        ++secondPlayerWins;
+    }
+
+    public void WoodColidedWithEndingZone()
+    {
+        ++woodsTouchingEndingZone;
+    }
+
+    public void WoodLeftEndingZone()
+    {
+        --woodsTouchingEndingZone;
+        if (woodsTouchingEndingZone <= 2)
+        {
+            RoundEnd();
+        }
     }
 
     public void ChangeMouseWheelSpeed(float newSpeed)

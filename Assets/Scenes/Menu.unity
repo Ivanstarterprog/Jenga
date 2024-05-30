@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1554702192}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChangeMouseWheelSpeed
         m_Mode: 4
@@ -2301,63 +2301,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380182392}
   m_CullTransparentMesh: 1
---- !u!1001 &1399682039
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 474.33624
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 455.79868
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -599.43097
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867781909501019566, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7721986094200807688, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      propertyPath: m_Name
-      value: GameManager (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
 --- !u!1 &1452567570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,27 +2434,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452567570}
   m_CullTransparentMesh: 1
---- !u!1 &1554702191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7721986094200807688, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-  m_PrefabInstance: {fileID: 1714086746973462724}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1554702192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554702191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87be939fa7e23074c95a642129244102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseWheelSpeed: 0
-  cameraMoveSpeed: 2
-  currentPlayer: First
-  isPaused: 0
 --- !u!1 &1623595240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,7 +3287,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1554702192}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChangeMouseWheelSpeed
         m_Mode: 4
@@ -3429,14 +3351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2353870183521670755, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7721986094200807688, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1554702192}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
 --- !u!1001 &8144887120878776332
 PrefabInstance:
@@ -3524,4 +3442,3 @@ SceneRoots:
   - {fileID: 2008126128}
   - {fileID: 505303516}
   - {fileID: 1714086746973462724}
-  - {fileID: 1399682039}
