@@ -42,6 +42,8 @@ public class MoveDjengaScript : MonoBehaviour
             mousePosition = Input.mousePosition - GetMousePosition();
             endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
             _rigidBody.useGravity = false;
+            _rigidBody.freezeRotation = true;
+            transform.eulerAngles = new Vector3(0, _rigidBody.transform.eulerAngles.y, 0);
         }
         
     }
@@ -61,6 +63,7 @@ public class MoveDjengaScript : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             _rigidBody.useGravity = true;
+            _rigidBody.freezeRotation = false;
             _rigidBody.AddForce(velocity, ForceMode.Impulse);
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,10 +9,13 @@ public class UIGameScript : MonoBehaviour
     [SerializeField] GameObject menu;
     [SerializeField] GameObject settings;
     [SerializeField] GameObject playerUI;
+    [SerializeField] GameObject currentPlayerTextObject;
+    private TextMeshProUGUI _currentPlayerText;
 
     void Start()
     {
         ContinueGame();
+        _currentPlayerText = currentPlayerTextObject.GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -25,6 +29,18 @@ public class UIGameScript : MonoBehaviour
             else
             {
                 PauseGame();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.ChangePlayer();
+            if (GameManager.Instance.currentPlayer == "First")
+            {
+                _currentPlayerText.text = "Ход первого игрока";
+            }
+            else
+            {
+                _currentPlayerText.text = "Ход второго игрока";
             }
         }
     }

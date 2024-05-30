@@ -51,6 +51,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
     }
 
+    public void ChangePlayer()
+    {
+        if (currentPlayer == "First")
+        {
+            currentPlayer = "Second";
+        }
+        else
+        {
+            currentPlayer = "First";
+        }
+    }
 
     void Update()
     {

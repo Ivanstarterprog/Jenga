@@ -13,6 +13,14 @@ public class UIScript : MonoBehaviour
         CloseSettings();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseSettings();
+        }
+    }
+
     public void OpenSettings()
     {
         menu.SetActive(false);
