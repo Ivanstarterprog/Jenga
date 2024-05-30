@@ -1,31 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public float wheelSpeed = 10;
-    public float cameraMoveSpeed = 2;
     public GameObject pointToMoveAround;
     private Vector3 _pointToMoveAroundPosition;
     private Camera _mainCamera;
+    private Vector3 _startPosition;
 
     private void Start()
     {
         _mainCamera = GetComponent<Camera>();
         _pointToMoveAroundPosition = pointToMoveAround.transform.position;
+        _startPosition = gameObject.transform.position;
     }
 
     private void Update()
     {
         transform.LookAt(_pointToMoveAroundPosition);
-        
-        if (!Input.GetMouseButton(0))
+        if (!GameManager.instance.isPaused)
         {
-            ZoomAtJenga();
+            if (!Input.GetMouseButton(0) )
+            {
+                ZoomAtJenga();
+            }
+            LookAroundJenga();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                gameObject.transform.position = _startPosition;
+            }
         }
         
-        LookAroundJenga();
         
     }
 
@@ -35,11 +39,11 @@ public class CameraMove : MonoBehaviour
 
         if (scrollWheelAxis > 0.00f && _mainCamera.fieldOfView >= 25)
         {
-            _mainCamera.fieldOfView -= wheelSpeed;
+            _mainCamera.fieldOfView -= GameManager.instance.mouseWheelSpeed;
         }
         if (scrollWheelAxis < 0.00f && _mainCamera.fieldOfView <= 60)
         {
-            _mainCamera.fieldOfView += wheelSpeed;
+            _mainCamera.fieldOfView += GameManager.instance.mouseWheelSpeed;
         }
     }
 
@@ -47,19 +51,19 @@ public class CameraMove : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            gameObject.transform.RotateAround(_pointToMoveAroundPosition, Vector3.up, cameraMoveSpeed);
+            gameObject.transform.RotateAround(_pointToMoveAroundPosition, Vector3.up, GameManager.instance.cameraMoveSpeed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            gameObject.transform.RotateAround(_pointToMoveAroundPosition, Vector3.down, cameraMoveSpeed);
+            gameObject.transform.RotateAround(_pointToMoveAroundPosition, Vector3.down, GameManager.instance.cameraMoveSpeed);
         }
         if (Input.GetKey(KeyCode.W) && _mainCamera.transform.position.y <= 6)
         {
-            gameObject.transform.RotateAround(_pointToMoveAroundPosition, transform.right, cameraMoveSpeed);
+            gameObject.transform.RotateAround(_pointToMoveAroundPosition, transform.right, GameManager.instance.cameraMoveSpeed);
         }
         if (Input.GetKey(KeyCode.S) && _mainCamera.transform.position.y >= 2)
         {
-            gameObject.transform.RotateAround(_pointToMoveAroundPosition, -transform.right, cameraMoveSpeed);
+            gameObject.transform.RotateAround(_pointToMoveAroundPosition, -transform.right, GameManager.instance.cameraMoveSpeed);
         }
     }
 }

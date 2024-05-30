@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class MoveDjengaScript : MonoBehaviour
 {
-    
-    private Vector3 mousePosition;
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 endPoint;
     public Vector3 targetPosition;
     public float smoothTime = 1f;
     public float speed = 4;
+
+    private Vector3 _mousePosition;
+    private Vector3 _velocity = Vector3.zero;
+    private Vector3 _endPoint;
     private Rigidbody _rigidBody;
 
     private void Start()
@@ -36,11 +36,11 @@ public class MoveDjengaScript : MonoBehaviour
 
     private void RotateJenga()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && !GameManager.instance.isPaused)
         {
             transform.Rotate(0, -1, 0);
         }
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKey(KeyCode.E) && !GameManager.instance.isPaused)
         {
             transform.Rotate(0, 1, 0);
         }
@@ -48,10 +48,10 @@ public class MoveDjengaScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !GameManager.instance.isPaused)
         {
-            mousePosition = Input.mousePosition - GetMousePosition();
-            endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+            _mousePosition = Input.mousePosition - GetMousePosition();
+            _endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - _mousePosition);
             _rigidBody.useGravity = false;
             _rigidBody.freezeRotation = true;
             transform.eulerAngles = new Vector3(0, _rigidBody.transform.eulerAngles.y, 0);
@@ -63,8 +63,8 @@ public class MoveDjengaScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0)) 
         { 
-            endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
-            transform.position = Vector3.SmoothDamp(transform.position, endPoint, ref velocity, smoothTime, speed);
+            _endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - _mousePosition);
+            transform.position = Vector3.SmoothDamp(transform.position, _endPoint, ref _velocity, smoothTime, speed);
             RotateJenga();
         }       
     }
@@ -75,7 +75,7 @@ public class MoveDjengaScript : MonoBehaviour
         {
             _rigidBody.useGravity = true;
             _rigidBody.freezeRotation = false;
-            _rigidBody.AddForce(velocity, ForceMode.Impulse);
+            _rigidBody.AddForce(_velocity, ForceMode.Impulse);
         }
     }
 }

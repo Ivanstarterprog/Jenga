@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PushJenga : MonoBehaviour
@@ -10,7 +8,7 @@ public class PushJenga : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !GameManager.instance.isPaused)
         {
             _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(_ray.origin, _ray.GetPoint(100));

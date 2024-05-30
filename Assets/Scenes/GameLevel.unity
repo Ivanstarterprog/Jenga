@@ -499,7 +499,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 54.6084, y: 0, z: -1.1056592, w: 0}
+  m_margin: {x: 54.6084, y: 0, z: -77.022804, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2377,7 +2377,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8933657336462772274, guid: f2cab8896cb145c48862b499870954b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202719008}
   m_SourcePrefab: {fileID: 100100000, guid: f2cab8896cb145c48862b499870954b5, type: 3}
 --- !u!1 &855063184
 GameObject:
@@ -3003,8 +3006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee768df9e06c2a74eadc4a9042fb8879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelSpeed: 1
-  cameraMoveSpeed: 2
   pointToMoveAround: {fileID: 1517308909}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -3278,6 +3279,8 @@ MonoBehaviour:
   currentPlayerTextObject: {fileID: 1110830328}
   firstPlayerScoreTextObject: {fileID: 1628899505}
   secondPlayerScoreTextObject: {fileID: 195990305}
+  wheelSpeedSliderObject: {fileID: 1131848867}
+  cameraSpeedSliderObject: {fileID: 181517078}
 --- !u!1 &1131848867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3368,9 +3371,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2066621662}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ChangeMouseWheelSpeed
+        m_MethodName: 
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3380,6 +3383,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!1 &1202719003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8933657336462772274, guid: f2cab8896cb145c48862b499870954b5, type: 3}
+  m_PrefabInstance: {fileID: 845452744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202719008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202719003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64020b331e5048d4cbb8ea7206eb7d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1203283068
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,7 +4052,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 75.12125, y: -0.035764694, z: 8.033417, w: 0}
+  m_margin: {x: 75.12125, y: -0.035764694, z: -14.503632, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4458,6 +4478,7 @@ GameObject:
   - component: {fileID: 2066621663}
   - component: {fileID: 2066621665}
   - component: {fileID: 2066621664}
+  - component: {fileID: 2066621666}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -4528,6 +4549,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066621662}
   m_CullTransparentMesh: 1
+--- !u!114 &2066621666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066621662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ce696fbd0511e449e7726f168609d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelSpeedSliderObject: {fileID: 0}
+  cameraSpeedSliderObject: {fileID: 0}
 --- !u!1 &2075557716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4540,9 +4575,9 @@ GameObject:
   - component: {fileID: 2075557719}
   - component: {fileID: 2075557718}
   - component: {fileID: 2075557717}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Layer: 2
+  m_Name: EndingZone
+  m_TagString: EndingZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4575,7 +4610,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075557716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

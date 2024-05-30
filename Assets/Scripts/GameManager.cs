@@ -6,16 +6,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
-    [Range(1f, 2f)] public float mouseWheelSpeed = 1.5f;
-    [Range(1f, 3f)] public float cameraMoveSpeed = 2f;
+    public float mouseWheelSpeed;
+    public float cameraMoveSpeed;
 
     public static Action<string> onRoundEnding;
 
+
     public string currentPlayer;
     public bool isPaused;
+    public bool isGameEnded;
     public int firstPlayerWins;
     public int secondPlayerWins;
     public int woodsTouchingEndingZone;
+    public int woodsTouchingTable;
 
     private void Start()
     {
@@ -34,14 +37,35 @@ public class GameManager : MonoBehaviour
     private void InitializeManager()
     {
         currentPlayer = "First";
+        mouseWheelSpeed = 1.5f;
+        cameraMoveSpeed = 2f;
+        SettingsScript.onCameraSpeedChange += CameraSpeedUpdate;
         PlayersWinsReset();
+        ColidersAndTriggerReset();
         PauseUnpressed();
+    }
+
+    public void CameraSpeedUpdate(float newCameraSpeed)
+    {
+        cameraMoveSpeed = newCameraSpeed;
+    }
+
+    public void MouseWheelSpeedUpdate(float newMouseWheelSpeed)
+    {
+        mouseWheelSpeed = newMouseWheelSpeed;
     }
 
     public void PlayersWinsReset()
     {
         firstPlayerWins = 0;
         secondPlayerWins = 0;
+    }
+
+    public void ColidersAndTriggerReset()
+    {
+        woodsTouchingEndingZone = 0;
+        woodsTouchingTable = 0;
+
     }
 
     public void RoundEnd()
@@ -75,15 +99,26 @@ public class GameManager : MonoBehaviour
     public void WoodLeftEndingZone()
     {
         --woodsTouchingEndingZone;
-        if (woodsTouchingEndingZone <= 2)
+        if (woodsTouchingEndingZone <= 1 && !isGameEnded)
         {
             RoundEnd();
+            isGameEnded = true;
         }
     }
 
-    public void ChangeMouseWheelSpeed(float newSpeed)
+    public void WoodColidedWithTable()
     {
-        mouseWheelSpeed = newSpeed;
+        ++woodsTouchingTable;
+        if (woodsTouchingTable > 4 && !isGameEnded)
+        {
+            RoundEnd();
+            isGameEnded = true;
+        }
+    }
+
+    public void WoodLeftTable()
+    {
+        --woodsTouchingTable;
     }
 
     public void PauseUnpressed()

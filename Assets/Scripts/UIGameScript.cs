@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIGameScript : MonoBehaviour
 {
@@ -18,13 +19,22 @@ public class UIGameScript : MonoBehaviour
     [SerializeField] GameObject secondPlayerScoreTextObject;
     private TextMeshProUGUI _secondPlayerScoreText;
 
+    public GameObject wheelSpeedSliderObject;
+    private Slider _wheelSpeedSlider;
+    public GameObject cameraSpeedSliderObject;
+    private Slider _cameraSpeedSlider;
+
     void Start()
     {
-        ContinueGame();
         roundEnd.SetActive(false);
         _currentPlayerText = currentPlayerTextObject.GetComponent<TextMeshProUGUI>();
         _firstPlayerScoreText = firstPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
         _secondPlayerScoreText = secondPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
+        _wheelSpeedSlider = wheelSpeedSliderObject.GetComponent<Slider>();
+        _cameraSpeedSlider = cameraSpeedSliderObject.GetComponent<Slider>();
+        _wheelSpeedSlider.value = GameManager.instance.mouseWheelSpeed;
+        _cameraSpeedSlider.value = GameManager.instance.cameraMoveSpeed;
+        ContinueGame();
     }
 
     private void OnEnable()
@@ -95,7 +105,7 @@ public class UIGameScript : MonoBehaviour
     public void ContinueGame()
     {
         GameManager.instance.PauseUnpressed();
-       // ReloadScoreUI();
+        ReloadScoreUI();
         ClosePauseMenu();
     }
 
@@ -112,6 +122,8 @@ public class UIGameScript : MonoBehaviour
     }
     public void RestartLevel()
     {
+        GameManager.instance.isGameEnded = false;
+        GameManager.instance.ColidersAndTriggerReset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
