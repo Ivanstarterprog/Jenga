@@ -10,7 +10,19 @@ public class UIScript : MonoBehaviour
 
     void Start()
     {
-        
+        CloseSettings();
+    }
+
+    public void OpenSettings()
+    {
+        menu.SetActive(false);
+        settings.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        menu.SetActive(true);
+        settings.SetActive(false);
     }
 
     public void StartGame()
