@@ -367,10 +367,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ChangeMouseWheelSpeed
-        m_Mode: 4
+      - m_Target: {fileID: 2066621666}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: CameraSpeedUpdate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3279,8 +3279,8 @@ MonoBehaviour:
   currentPlayerTextObject: {fileID: 1110830328}
   firstPlayerScoreTextObject: {fileID: 1628899505}
   secondPlayerScoreTextObject: {fileID: 195990305}
-  wheelSpeedSliderObject: {fileID: 1131848867}
-  cameraSpeedSliderObject: {fileID: 181517078}
+  _wheelSpeedSlider: {fileID: 1131848869}
+  _cameraSpeedSlider: {fileID: 181517080}
 --- !u!1 &1131848867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,10 +3371,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2066621662}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 4
+      - m_Target: {fileID: 2066621666}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: WheelSpeedUpdate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4561,8 +4561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ce696fbd0511e449e7726f168609d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelSpeedSliderObject: {fileID: 0}
-  cameraSpeedSliderObject: {fileID: 0}
+  _wheelSpeedSlider: {fileID: 1131848869}
+  _cameraSpeedSlider: {fileID: 181517080}
 --- !u!1 &2075557716
 GameObject:
   m_ObjectHideFlags: 0

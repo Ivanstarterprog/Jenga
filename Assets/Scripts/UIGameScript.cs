@@ -19,10 +19,8 @@ public class UIGameScript : MonoBehaviour
     [SerializeField] GameObject secondPlayerScoreTextObject;
     private TextMeshProUGUI _secondPlayerScoreText;
 
-    public GameObject wheelSpeedSliderObject;
-    private Slider _wheelSpeedSlider;
-    public GameObject cameraSpeedSliderObject;
-    private Slider _cameraSpeedSlider;
+    public Slider _wheelSpeedSlider;
+    public Slider _cameraSpeedSlider;
 
     void Start()
     {
@@ -30,8 +28,6 @@ public class UIGameScript : MonoBehaviour
         _currentPlayerText = currentPlayerTextObject.GetComponent<TextMeshProUGUI>();
         _firstPlayerScoreText = firstPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
         _secondPlayerScoreText = secondPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
-        _wheelSpeedSlider = wheelSpeedSliderObject.GetComponent<Slider>();
-        _cameraSpeedSlider = cameraSpeedSliderObject.GetComponent<Slider>();
         _wheelSpeedSlider.value = GameManager.instance.mouseWheelSpeed;
         _cameraSpeedSlider.value = GameManager.instance.cameraMoveSpeed;
         ContinueGame();
@@ -118,6 +114,7 @@ public class UIGameScript : MonoBehaviour
     public void GoToMainMenu()
     {
         GameManager.instance.PlayersWinsReset();
+        GameManager.instance.ColidersAndTriggerReset();
         SceneManager.LoadScene("Menu");
     }
     public void RestartLevel()

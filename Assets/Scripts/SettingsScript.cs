@@ -1,23 +1,15 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
-    public GameObject wheelSpeedSliderObject;
-    public GameObject cameraSpeedSliderObject;
-    private Slider _wheelSpeedSlider;
-    private Slider _cameraSpeedSlider;
+    public Slider _wheelSpeedSlider;
+    public Slider _cameraSpeedSlider;
 
     public static Action<float> onWheelSpeedChange;
     public static Action<float> onCameraSpeedChange;
 
-
-    private void Start()
-    {
-        _wheelSpeedSlider = wheelSpeedSliderObject.GetComponent<Slider>();
-        _cameraSpeedSlider = cameraSpeedSliderObject.GetComponent<Slider>();
-    }
     
     public void WheelSpeedUpdate()
     {

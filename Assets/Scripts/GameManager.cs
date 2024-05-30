@@ -37,8 +37,9 @@ public class GameManager : MonoBehaviour
     private void InitializeManager()
     {
         currentPlayer = "First";
-        mouseWheelSpeed = 1.5f;
-        cameraMoveSpeed = 2f;
+        mouseWheelSpeed = 1f;
+        cameraMoveSpeed = 1f;
+        SettingsScript.onWheelSpeedChange += MouseWheelSpeedUpdate;
         SettingsScript.onCameraSpeedChange += CameraSpeedUpdate;
         PlayersWinsReset();
         ColidersAndTriggerReset();
