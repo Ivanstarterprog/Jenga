@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4072760224613566934}
   - component: {fileID: 4322843498605370176}
   - component: {fileID: 2567912975192822437}
+  - component: {fileID: 561175890378865596}
   m_Layer: 0
   m_Name: JengaWood
   m_TagString: JengaWood
@@ -149,3 +150,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &561175890378865596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049988636633856335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28195deda0037344384696cec586a684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTextureMouseOver: {fileID: 2800000, guid: 45027cc4ac52336488fa076b98989fc6, type: 3}
+  cursorTextureMouseDrag: {fileID: 2800000, guid: 408ebd45cc566b34da17d1007f95fcc7, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
