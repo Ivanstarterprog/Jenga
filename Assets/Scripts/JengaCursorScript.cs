@@ -22,20 +22,20 @@ public class JengaCursorScript : MonoBehaviour
     {
         if(!GameManager.instance.isPaused)
         {
-            Cursor.SetCursor(cursorTextureMouseDrag, hotSpot, cursorMode);
+            Cursor.SetCursor(cursorTextureMouseDrag, new Vector2(16, 16), cursorMode);
         }
     }
 
     public void OnMouseUp()
     {
-        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        Cursor.SetCursor(null, hotSpot, cursorMode);
     }
 
     public void OnMouseExit()
     {
         if (!Input.GetMouseButton(0) && !GameManager.instance.isPaused)
         {
-            Cursor.SetCursor(null, Vector2.zero, cursorMode);
+            Cursor.SetCursor(null, hotSpot, cursorMode);
         }
     }
 }

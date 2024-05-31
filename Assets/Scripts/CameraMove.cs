@@ -5,13 +5,17 @@ public class CameraMove : MonoBehaviour
     public GameObject pointToMoveAround;
     private Vector3 _pointToMoveAroundPosition;
     private Camera _mainCamera;
-    private Vector3 _startPosition;
+    private float _startZoom;
+    private Vector3 _firstPlayerCameraStartPosition;
+    private Vector3 _secondPlayerCameraStartPosition;
 
     private void Start()
     {
         _mainCamera = GetComponent<Camera>();
+        _startZoom = _mainCamera.fieldOfView;
         _pointToMoveAroundPosition = pointToMoveAround.transform.position;
-        _startPosition = gameObject.transform.position;
+        _firstPlayerCameraStartPosition = gameObject.transform.position;
+        _secondPlayerCameraStartPosition = new Vector3 (6.466586e-07f, 4.86f, 7.539999f);
     }
 
     private void Update()
@@ -26,7 +30,15 @@ public class CameraMove : MonoBehaviour
             LookAroundJenga();
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                gameObject.transform.position = _startPosition;
+                if (GameManager.instance.currentPlayer != "First")
+                {
+                    gameObject.transform.position = _firstPlayerCameraStartPosition;
+                }
+                else
+                {
+                    gameObject.transform.position = _secondPlayerCameraStartPosition;
+                }
+                _mainCamera.fieldOfView = _startZoom;
             }
         }
         
