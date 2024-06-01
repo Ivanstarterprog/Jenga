@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ButtonCursorScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonCursorScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
@@ -12,6 +12,11 @@ public class ButtonCursorScript : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
     public void OnPointerExit(PointerEventData eventData)

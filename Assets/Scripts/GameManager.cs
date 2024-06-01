@@ -146,6 +146,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetLevel()
+    {
+        isGameEnded = false;
+        ColidersAndTriggerReset();
+    }
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "Menu" && isPaused)

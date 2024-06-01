@@ -36,7 +36,7 @@ public class MoveDjengaScript : MonoBehaviour
 
     private void RotateJenga()
     {
-        if (Input.GetKey(KeyCode.Q) && !GameManager.instance.isPaused)
+        if (Input.GetKey(KeyCode.Q) && !GameManager.instance.isPaused && !GameManager.instance.isGameEnded)
         {
             transform.Rotate(0, -1, 0);
         }
@@ -48,7 +48,7 @@ public class MoveDjengaScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0) && !GameManager.instance.isPaused)
+        if (Input.GetMouseButtonDown(0) && !GameManager.instance.isPaused && !GameManager.instance.isGameEnded)
         {
             _mousePosition = Input.mousePosition - GetMousePosition();
             _endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - _mousePosition);
@@ -61,7 +61,7 @@ public class MoveDjengaScript : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (Input.GetMouseButton(0)) 
+        if (Input.GetMouseButton(0) && !GameManager.instance.isPaused && !GameManager.instance.isGameEnded) 
         { 
             _endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition - _mousePosition);
             transform.position = Vector3.SmoothDamp(transform.position, _endPoint, ref _velocity, smoothTime, speed);

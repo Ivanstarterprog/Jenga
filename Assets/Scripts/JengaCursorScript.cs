@@ -12,7 +12,7 @@ public class JengaCursorScript : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (!Input.GetMouseButton(0) && !GameManager.instance.isPaused)
+        if (!Input.GetMouseButton(0) && !GameManager.instance.isPaused && !GameManager.instance.isGameEnded)
         {
             Cursor.SetCursor(cursorTextureMouseOver, hotSpot, cursorMode);
         }
@@ -20,9 +20,13 @@ public class JengaCursorScript : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        if(!GameManager.instance.isPaused)
+        if(!GameManager.instance.isPaused && !GameManager.instance.isGameEnded)
         {
             Cursor.SetCursor(cursorTextureMouseDrag, new Vector2(16, 16), cursorMode);
+        }
+        else
+        {
+            Cursor.SetCursor(null, hotSpot, cursorMode);
         }
     }
 
@@ -33,7 +37,7 @@ public class JengaCursorScript : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (!Input.GetMouseButton(0) && !GameManager.instance.isPaused)
+        if (!Input.GetMouseButton(0))
         {
             Cursor.SetCursor(null, hotSpot, cursorMode);
         }

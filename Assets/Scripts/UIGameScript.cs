@@ -53,7 +53,7 @@ public class UIGameScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.instance.isGameEnded)
         {
             if (GameManager.instance.isPaused)
             {
@@ -119,8 +119,7 @@ public class UIGameScript : MonoBehaviour
     }
     public void RestartLevel()
     {
-        GameManager.instance.isGameEnded = false;
-        GameManager.instance.ColidersAndTriggerReset();
+        GameManager.instance.ResetLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
