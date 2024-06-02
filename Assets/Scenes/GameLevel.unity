@@ -4084,7 +4084,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1632525094}
+      - m_Target: {fileID: 2353870183521670755, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ReloadGame
         m_Mode: 1
@@ -4280,17 +4280,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628899505}
   m_CullTransparentMesh: 1
---- !u!114 &1632525094 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2353870183521670755, guid: c09335934ef84c743b6d9f80e2a2f030, type: 3}
-  m_PrefabInstance: {fileID: 413782255}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87be939fa7e23074c95a642129244102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1714666358
 GameObject:
   m_ObjectHideFlags: 0
