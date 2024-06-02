@@ -18,6 +18,8 @@ public class UIGameScript : MonoBehaviour
     private TextMeshProUGUI _firstPlayerScoreText;
     [SerializeField] GameObject secondPlayerScoreTextObject;
     private TextMeshProUGUI _secondPlayerScoreText;
+    [SerializeField] GameObject winnerPlayerTextObject;
+    private TextMeshProUGUI _winnerPlayerText;
 
     public Slider _wheelSpeedSlider;
     public Slider _cameraSpeedSlider;
@@ -28,6 +30,7 @@ public class UIGameScript : MonoBehaviour
         _currentPlayerText = currentPlayerTextObject.GetComponent<TextMeshProUGUI>();
         _firstPlayerScoreText = firstPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
         _secondPlayerScoreText = secondPlayerScoreTextObject.GetComponent<TextMeshProUGUI>();
+        _winnerPlayerText = winnerPlayerTextObject.GetComponent<TextMeshProUGUI>();
         _wheelSpeedSlider.value = GameManager.instance.mouseWheelSpeed;
         _cameraSpeedSlider.value = GameManager.instance.cameraMoveSpeed;
         ContinueGame();
@@ -36,11 +39,13 @@ public class UIGameScript : MonoBehaviour
     private void OnEnable()
     {
         GameManager.onRoundEnding += EndRoundUI;
+        GameManager.onGameReload += RestartLevel;
     }
 
     private void OnDisable()
     {
         GameManager.onRoundEnding -= EndRoundUI;
+        GameManager.onGameReload -= RestartLevel;
     }
 
     private void EndRoundUI(string winner)
@@ -49,6 +54,7 @@ public class UIGameScript : MonoBehaviour
         settings.SetActive(false);
         playerUI.SetActive(false);
         roundEnd.SetActive(true);
+        _winnerPlayerText.text = winner;
     }
 
     private void Update()
@@ -119,7 +125,8 @@ public class UIGameScript : MonoBehaviour
     }
     public void RestartLevel()
     {
-        GameManager.instance.ResetLevel();
+        GameManager.instance.isGameEnded = false;
+        GameManager.instance.ColidersAndTriggerReset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

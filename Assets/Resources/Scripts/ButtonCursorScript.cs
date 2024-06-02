@@ -5,22 +5,26 @@ using UnityEngine.EventSystems;
 
 public class ButtonCursorScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    private Texture2D _cursorTexture;
+    private CursorMode _cursorMode = CursorMode.Auto;
+    private Vector2 _hotSpot = Vector2.zero;
 
+    private void Start()
+    {
+        _cursorTexture = Resources.Load<Texture2D>("Materials/Cursors/link");
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.SetCursor(_cursorTexture, _hotSpot, _cursorMode);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        Cursor.SetCursor(null, Vector2.zero, _cursorMode);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     { 
-        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        Cursor.SetCursor(null, Vector2.zero, _cursorMode);
     }
 }

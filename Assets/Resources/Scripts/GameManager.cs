@@ -10,9 +10,14 @@ public class GameManager : MonoBehaviour
     public float cameraMoveSpeed;
 
     public static Action<string> onRoundEnding;
+    public static Action onGameReload;
+
+
+    public void ReloadGame() => onGameReload?.Invoke();
 
 
     public string currentPlayer;
+    public string winnerPlayerMessage;
     public bool isPaused;
     public bool isGameEnded;
     public int firstPlayerWins;
@@ -79,17 +84,19 @@ public class GameManager : MonoBehaviour
         {
             PlayerOneWin();
         }
-        onRoundEnding?.Invoke(currentPlayer);
+        onRoundEnding?.Invoke(winnerPlayerMessage);
     }
 
     public void PlayerOneWin()
     {
         ++firstPlayerWins;
+        winnerPlayerMessage = "Игрок 1\nПобеда!";
     }
 
     public void PlayerTwoWin()
     {
         ++secondPlayerWins;
+        winnerPlayerMessage = "Игрок 2\nПобеда!";
     }
 
     public void WoodColidedWithEndingZone()
@@ -146,11 +153,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetLevel()
-    {
-        isGameEnded = false;
-        ColidersAndTriggerReset();
-    }
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "Menu" && isPaused)
