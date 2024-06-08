@@ -107,6 +107,7 @@ public class UIGameScript : MonoBehaviour
     public void ContinueGame()
     {
         GameManager.instance.PauseUnpressed();
+        GameManager.instance.isGameEnded = false;
         ReloadScoreUI();
         ClosePauseMenu();
     }
@@ -126,6 +127,7 @@ public class UIGameScript : MonoBehaviour
     public void RestartLevel()
     {
         GameManager.instance.isGameEnded = false;
+        GameManager.instance.currentPlayer = "First";
         GameManager.instance.ColidersAndTriggerReset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

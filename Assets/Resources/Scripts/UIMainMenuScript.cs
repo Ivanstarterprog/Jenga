@@ -16,6 +16,7 @@ public class UIScript : MonoBehaviour
     {
         _wheelSpeedSlider.value = GameManager.instance.mouseWheelSpeed;
         _cameraSpeedSlider.value = GameManager.instance.cameraMoveSpeed;
+        GameManager.instance.isGameEnded = true;
         CloseSettings();
     }
 
